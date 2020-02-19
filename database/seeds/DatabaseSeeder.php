@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         //se descomenta esta línea para que la tabla llame a la tabla
          //$this->call(UsersTableSeeder::class);
     	$this->call(UserTableSeeder::class);
+    	$this->call(ProductsTableSeeder::class);
     }
 }
