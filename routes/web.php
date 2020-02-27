@@ -17,14 +17,20 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {    
+	Route::get('/products', 'ProductController@index'); //listado de productos
+	Route::get('/products/create', 'ProductController@create'); //formulario de registro
+	Route::post('/products', 'ProductController@store'); //guardar datos del usuario ingresado en el formulario
+
+	Route::get('/products/{id}/edit', 'ProductController@edit'); //formulario de edición
+	Route::post('/products/{id}/edit', 'ProductController@update');
+
+	//Route::get('/products/{id}/delete', 'ProductController@destroy'); //formulario de eliminar
+	//Route::post('/products/{id}/delete', 'ProductController@destroy'); //formulario de eliminar
+	Route::delete('/products/{id}', 'ProductController@destroy'); //formulario de eliminar
+	//Route::post('/products/{id}/delete', 'ProductController@update');
+});
+
 // get es para leer datos
 //post es
-Route::get('/admin/products', 'ProductController@index'); //listado de productos
-Route::get('/admin/products/create', 'ProductController@create'); //formulario de registro
-Route::post('/admin/products', 'ProductController@store'); //guardar datos del usuario ingresado en el formulario
-
-Route::get('/admin/products/{id}/edit', 'ProductController@edit'); //formulario de edición
-Route::post('/admin/products/{id}/edit', 'ProductController@update');
-
-Route::get('/admin/products/{id}/delete', 'ProductController@destroy'); //formulario de eliminar
-//Route::post('/admin/products/{id}/delete', 'ProductController@update');

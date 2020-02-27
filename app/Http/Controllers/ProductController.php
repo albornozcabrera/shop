@@ -19,7 +19,26 @@ class ProductController extends Controller
     }
 
     public function store (Request $request){
-    	//dd($request->all());
+		//validación de datos en el controlador
+
+		$messages =[
+			'name.required' => 'Es necesario ingresar un nombre al producto.',
+			'name.min' => 'Es necesario que el nombre del prodcuto tenga al menos 3 caracteres.',
+			'description.required' => 'Es necesario ingresar una descripción al producto.',
+			'description.max' => 'La descripción sólo permite 200 caracteres.',    		
+    		'price.required' => 'Es necesario definir un precio al producto',
+    		'price.numeric' => 'Ingrese un precio válido.',
+    		'price.min' => 'No se admiten valores negativos.'
+		];
+
+    	$rules =[
+    		'name' =>'required|min:3',
+    		'description' =>'required|max:200',
+    		'price' =>'required|numeric|min:0' //validación numerica
+    	];
+		$this->validate($request, $rules, $messages);
+
+    	//dd($request->all()); //muestra todo el JSON que trae el request
     	//return view('');
     	$product = new Product();
     	$product->name = $request->input('name');
@@ -40,6 +59,24 @@ class ProductController extends Controller
     public function update (Request $request, $id){
     	//dd($request->all());
     	//return view('');
+    	$messages =[
+			'name.required' => 'Es necesario ingresar un nombre al producto.',
+			'name.min' => 'Es necesario que el nombre del prodcuto tenga al menos 3 caracteres.',
+			'description.required' => 'Es necesario ingresar una descripción al producto.',
+			'description.max' => 'La descripción sólo permite 200 caracteres.',    		
+    		'price.required' => 'Es necesario definir un precio al producto',
+    		'price.numeric' => 'Ingrese un precio válido.',
+    		'price.min' => 'No se admiten valores negativos.'
+		];
+
+    	$rules =[
+    		'name' =>'required|min:3',
+    		'description' =>'required|max:200',
+    		'price' =>'required|numeric|min:0' //validación numerica
+    	];
+		$this->validate($request, $rules, $messages);
+
+
     	$product = Product::find($id);
     	$product->name = $request->input('name');
     	$product->description = $request->input('description');
@@ -54,7 +91,7 @@ class ProductController extends Controller
     	//return view('');
     	$product = Product::find($id);    	
     	$product->delete();//elimina en la tabla
-
     	return back();
+    	//return redirect('/admin/products');
     }
 }
