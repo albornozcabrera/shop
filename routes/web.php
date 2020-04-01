@@ -30,6 +30,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 	//Route::post('/products/{id}/delete', 'ProductController@destroy'); //formulario de eliminar
 	Route::delete('/products/{id}', 'ProductController@destroy'); //formulario de eliminar
 	//Route::post('/products/{id}/delete', 'ProductController@update');
+
+	Route::get('/products/{id}/images', 'ImageController@index'); //listado
+	Route::post('/products/{id}/images', 'ImageController@store'); //registrar
+	Route::delete('/products/{id}/images', 'ImageController@destroy'); //eliminar
 });
 
 // get es para leer datos

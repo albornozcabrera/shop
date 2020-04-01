@@ -18,9 +18,22 @@
                 </div>
             @endif
 
-            You are logged in!
+            <ul class="nav nav-pills nav-pills-primary" role="tablist">
+                <li>
+                    <a href="#dashboard" role="tab" data-toggle="tab">
+                        <i class="material-icons">dashboard</i>
+                        Carrito de compras
+                    </a>
+                </li>
+                <li>
+                    <a href="#tasks" role="tab" data-toggle="tab">
+                        <i class="material-icons">list</i>
+                        Pedidos realizados
+                    </a>
+                </li>
+            </ul>
 
-            <form method="post" action="{{ url('/admin/products') }}">
+            <!--<form method="post" action="{{ url('/admin/products') }}">
                 {{ csrf_field() }}
 
                 <div class="row">
@@ -48,47 +61,17 @@
                 <button class="btn btn-primary">Registrar Producto</button>
                 <a href="{{ url('/admin/products') }}" class="btn btn-default">Cancelar</a>
 
-               <!-- $table->string('name');
+                $table->string('name');
                 $table->string('description');
                 $table->text('long_description');
-                $table->float('price');    -->
-            </form>
-                
-                
+                $table->float('price');    
+            </form>-->      
         </div>
+
     </div>
-    <footer class="footer">
-            <div class="container">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="http://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://presentation.creative-tim.com">
-                               About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                               Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="copyright pull-right">
-                    &copy; 2016, made with <i class="fa fa-heart heart"></i> by Creative Tim
-                </div>
-            </div>
-    </footer>
 </div>
+
+@include('includes.footer')
 @endsection
 
 

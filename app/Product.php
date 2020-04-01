@@ -14,4 +14,20 @@ class Product extends Model
     public function images(){
 	return $this->hasMany(ProductImage::class);
 	}
+
+	public function getFeaturedImageUrlAttribute()
+	{
+		$featuredImage = $this->images()->where('featured', true)->firts();
+		
+		if (!$featuredImage)
+			$featuredImage = $this->images()->firts();
+		
+		if ($featuredImage) {
+			return $featuredImage->url;
+		}
+
+		//tenemos q devolver una imagen por defecto
+		return 'images/products/default.jpg';
+	
+	}
 }
